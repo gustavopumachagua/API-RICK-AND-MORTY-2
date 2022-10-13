@@ -6,22 +6,14 @@ import Footer from "../components/Footer";
 import { useCharacters } from "../hooks/useCharacters";
 
 const Favorites = () => {
-  const {
-    darkMode,
-    favorites,
-    isFavorite,
-    addFavorite,
-    removeFavorite,
-    handleClick,
-  } = useCharacters();
-
-  let appClass = `App ${darkMode ? "bg-dark" : ""}`;
+  const { favorites, isFavorite, addFavorite, removeFavorite, handleClick } =
+    useCharacters();
 
   return (
-    <ThemeContext.Provider value={{ darkMode, handleClick }}>
-      <div className="">
+    <ThemeContext.Provider value={{ handleClick }}>
+      <div className="bg-bodyLight dark:bg-bodyDark">
         <Navbar />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 sm:px-14 md:px-24 py-8 bg-bodyLight">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 sm:px-14 md:px-24 py-8 bg-bodyLight dark:bg-bodyDark">
           {favorites.map((favorite) => (
             <CharacterCard
               key={favorite.id}

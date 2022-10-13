@@ -19,14 +19,12 @@ const App = () => {
     goToPrevPage,
     currentPage,
     totalPages,
-    darkMode,
     handleClick,
     setSearchValue,
     searchValue,
     searchCharacter,
   } = useCharacters();
   const values = {
-    darkMode,
     handleClick,
     characters,
     isFavorite,
@@ -42,13 +40,12 @@ const App = () => {
     searchValue,
     searchCharacter,
   };
-  let appClass = `App ${darkMode ? "bg-dark" : ""}`;
   return (
     <ThemeContext.Provider value={values}>
-      <div className="">
+      <div className="bg-bodyLight dark:bg-bodyDark">
         <Navbar />
         <Header />
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 sm:px-14 md:px-24 py-8 bg-bodyLight ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 px-6 sm:px-14 md:px-24 py-8 bg-bodyLight dark:bg-bodyDark">
           {characters.map((character) => (
             <CharacterCard
               key={character.id}

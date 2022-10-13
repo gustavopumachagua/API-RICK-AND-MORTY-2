@@ -1,16 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 //Icons
 import { FaGenderless } from "react-icons/fa";
 import { VscWorkspaceUnknown } from "react-icons/vsc";
 import { BsGenderMale, BsGenderFemale, BsCircleFill } from "react-icons/bs";
 import { AiFillHeart } from "react-icons/ai";
-
-//Custom Imports
-import ThemeContext from "../context/ThemeContext";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const CharacterCard = (props) => {
-  const { darkMode } = useContext(ThemeContext);
   const character = props.character;
   const [favorite, setFavorite] = useState(props.isFavorite);
 
@@ -36,10 +34,8 @@ const CharacterCard = (props) => {
     }
   };
 
-  let cardClass = `character-card ${darkMode ? "card-dark" : ""}`;
-  let cardInfoClass = `character-card-info ${darkMode ? "info-dark" : ""}`;
-  let favIconClass = `text-white text-2xl absolute right-2 top-2 bg-red-400 rounded-full border-8 border-red-400 hover:bg-red-600 hover:border-red-600 cursor-pointer ${
-    favorite ? "text-red-200 " : ""
+  let favIconClass = `text-white text-2xl absolute z-10 right-2 top-2 bg-red-400 rounded-full border-8 border-red-400 hover:bg-red-600 hover:border-red-600 cursor-pointer ${
+    favorite ? "text-red-800 " : ""
   }`;
 
   const handleClick = () => {
@@ -52,15 +48,22 @@ const CharacterCard = (props) => {
   };
 
   return (
-    <div className=" relative bg-slate-300 rounded-xl border-2 border-white dark:bg-bodyDark w-auto h-auto">
+    <div className=" relative dark:text-secondary text-primary rounded-xl bg-bodyLight border-2 border-slate-400 dark:bg-bodyDark w-auto h-auto">
       <div className={favIconClass}>
         <AiFillHeart onClick={handleClick} />
       </div>
-      <img src={character.image} alt="character img" className=" rounded-xl" />
+      <LazyLoadImage
+        width="100%"
+        min-height="144"
+        effect="blur"
+        src={character.image}
+        alt="character img"
+        className=" rounded-xl"
+      />
       <h2 className="text-center font-semibold py-1 text-xl">
         {character.name}
       </h2>
-      <div className="flex justify-center space-x-8 sm:space-x-10 md:space-x-3 lg:space-x-8 bg-cardLight py-2 rounded-xl font-semibold">
+      <div className="flex justify-center space-x-8 sm:space-x-10 md:space-x-3 lg:space-x-8 bg-cardLight dark:bg-cardDark py-2 rounded-xl font-semibold">
         <div className="flex flex-col space-y-2">
           <p className="text-lg">{character.status}</p>
           <div className="flex justify-center">
