@@ -28,6 +28,7 @@ Your app is ready to be deployed!
 
 - react-lazy-load-image-component
 - react-icons
+- react router dom
 
 ## Demo
 
